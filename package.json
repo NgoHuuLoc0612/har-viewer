@@ -1,0 +1,16 @@
+{
+  "name": "har-viewer",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "concurrently -n \"api,web\" -c \"cyan,green\" \"npm run dev --workspace=apps/api\" \"npm run dev --workspace=apps/web\"",
+    "build": "npm run build --workspace=apps/api && npm run build --workspace=apps/web",
+    "start": "concurrently -n \"api,web\" -c \"cyan,green\" \"npm run start:prod --workspace=apps/api\" \"npm run start --workspace=apps/web\"",
+    "setup:db": "node scripts/setup-db.js",
+    "install:all": "npm install --legacy-peer-deps"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

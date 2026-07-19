@@ -1,0 +1,38 @@
+node_modules/
+.next/
+dist/
+build/
+.env
+.env.local
+*.env
+!*.env.example
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Cache
+.turbo/
+.eslintcache
+
+# Test coverage
+coverage/
+
+# Drizzle
+drizzle/
+
+# Build outputs
+apps/api/dist/
+apps/web/.next/
+apps/web/out/

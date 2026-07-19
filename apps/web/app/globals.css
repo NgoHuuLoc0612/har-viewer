@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color palette - HAR Viewer: dark forensics aesthetic */
+  --color-background: #080c14;
+  --color-surface-0: #0c1018;
+  --color-surface-1: #111827;
+  --color-surface-2: #1a2235;
+  --color-surface-3: #1e293b;
+  --color-surface-4: #243041;
+  --color-border: #1e3050;
+  --color-border-subtle: #162540;
+
+  /* Accent - cyan network trace */
+  --color-accent: #06b6d4;
+  --color-accent-dim: #0891b2;
+  --color-accent-glow: #06b6d433;
+  --color-accent-bg: #06b6d412;
+
+  /* Status colors */
+  --color-success: #10b981;
+  --color-success-dim: #059669;
+  --color-warning: #f59e0b;
+  --color-warning-dim: #d97706;
+  --color-error: #ef4444;
+  --color-error-dim: #dc2626;
+  --color-info: #3b82f6;
+  --color-purple: #8b5cf6;
+  --color-pink: #ec4899;
+
+  /* Text */
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #475569;
+  --color-text-dim: #334155;
+
+  /* Method colors */
+  --color-method-get: #10b981;
+  --color-method-post: #3b82f6;
+  --color-method-put: #f59e0b;
+  --color-method-patch: #f59e0b;
+  --color-method-delete: #ef4444;
+  --color-method-options: #8b5cf6;
+  --color-method-head: #64748b;
+
+  /* Timing segment colors */
+  --color-timing-queued: #374151;
+  --color-timing-blocked: #6b7280;
+  --color-timing-dns: #8b5cf6;
+  --color-timing-connect: #3b82f6;
+  --color-timing-ssl: #06b6d4;
+  --color-timing-send: #10b981;
+  --color-timing-wait: #f59e0b;
+  --color-timing-receive: #ef4444;
+
+  /* Font */
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', ui-monospace, monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-1);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Code / monospace */
+code, pre, .mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent-glow);
+  color: var(--color-accent);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, opacity;
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
+}
+
+/* Status badge helpers */
+.status-1xx { color: #94a3b8; }
+.status-2xx { color: #10b981; }
+.status-3xx { color: #f59e0b; }
+.status-4xx { color: #ef4444; }
+.status-5xx { color: #dc2626; }
+.status-0 { color: #6b7280; }
+
+/* Method badge helpers */
+.method-GET { color: var(--color-method-get); }
+.method-POST { color: var(--color-method-post); }
+.method-PUT { color: var(--color-method-put); }
+.method-PATCH { color: var(--color-method-patch); }
+.method-DELETE { color: var(--color-method-delete); }
+.method-OPTIONS { color: var(--color-method-options); }
+.method-HEAD { color: var(--color-method-head); }
+
+/* Timing bar segments */
+.timing-bar {
+  height: 4px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Glow effect for accent elements */
+.accent-glow {
+  box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+/* Grid pattern background */
+.grid-bg {
+  background-image: 
+    linear-gradient(var(--color-border-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-subtle) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Waterfall bar animation */
+@keyframes progressBar {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Scan line effect */
+@keyframes scan {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100%); }
+}
+
+/* Pulse for loading states */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* JSON Tree overrides */
+.json-tree-dark {
+  background: transparent !important;
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+}
+
+/* Resizable panel handles */
+[data-panel-resize-handle-id] {
+  background: var(--color-border);
+  transition: background 150ms;
+}
+[data-panel-resize-handle-id]:hover,
+[data-panel-resize-handle-id][data-resize-handle-active] {
+  background: var(--color-accent);
+}
+
+/* ECharts tooltip */
+.echarts-tooltip {
+  background: var(--color-surface-2) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 6px !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Table row hover */
+.table-row-hover:hover {
+  background: var(--color-surface-2);
+  cursor: pointer;
+}
+
+.table-row-selected {
+  background: var(--color-accent-bg) !important;
+  border-left: 2px solid var(--color-accent);
+}
+
+/* Header strip */
+.har-header {
+  background: linear-gradient(180deg, #0f1929 0%, #080c14 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Waterfall gradient */
+.waterfall-track {
+  background: linear-gradient(90deg, transparent, var(--color-accent-bg));
+}
