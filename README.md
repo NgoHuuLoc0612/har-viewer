@@ -175,7 +175,7 @@ A full-stack HTTP Archive (HAR) analyzer with deep request inspection, waterfall
 #### 1. Install dependencies
 
 ```powershell
-git clone https://github.com/NgoHuuLoc0612/har-viewer
+git clone https://github.com/d4vucat/har-viewer
 cd har-viewer
 npm install --legacy-peer-deps
 ```
